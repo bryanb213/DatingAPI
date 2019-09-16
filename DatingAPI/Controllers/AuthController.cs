@@ -13,7 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 namespace DatingAPI.Controllers
 {
 
-    [Route("api/[controller")]
+    [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
         private readonly IAuthRepository _repo;
@@ -27,11 +27,7 @@ namespace DatingAPI.Controllers
         [HttpPost("register")] 
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
-            //validate request
-            // if(!ModelState.IsValid)
-            // {
-            //     return BadRequest(ModelState);
-            // }
+            
 
             userForRegisterDto.Username = userForRegisterDto.Username.ToLower();
             if(await _repo.UserExist(userForRegisterDto.Username))
