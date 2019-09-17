@@ -4,6 +4,7 @@ using DatingApp.API.Data;
 using DatingApp.API.Models;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace DatingAPI.Data
 {
     public class AuthRepository : IAuthRepository
@@ -25,7 +26,7 @@ namespace DatingAPI.Data
             }
 
             //checks if passwords match
-            if(!VerifyPasswordHash(password, user.PasswordSalt, user.PasswordHash))
+            if(!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
             {
                 return null;
             }
@@ -46,8 +47,9 @@ namespace DatingAPI.Data
                         return false;
                     }
                 }
+                return true;
             }
-            return true;
+            
         }
 
         public async Task<User> Register(User user, string password)
@@ -59,6 +61,7 @@ namespace DatingAPI.Data
             user.PasswordSalt = passwordSalt;
 
             await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
 
             return user;
         }
