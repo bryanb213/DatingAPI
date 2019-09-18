@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { Server } from 'http';
+
 
 // recognize error and catch it
 @Injectable()
@@ -43,7 +43,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         );
     }
 }
-// export and add it to app.module in providers
+// export and add it to app.module in provider
 export const ErrorInterceptorProvider = {
     provide: HTTP_INTERCEPTORS,
     useXlass: ErrorInterceptor,
