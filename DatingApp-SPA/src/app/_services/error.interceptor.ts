@@ -20,7 +20,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 }
                 // look inside error object
                 if (error instanceof HttpErrorResponse) {
-                    // get errors from header and needs to match from api
+                    // get errors from header and needs to match from api 500 err
                     const applicationError = error.headers.get('Application-Error');
                     if (applicationError) {
                         return throwError(applicationError);
