@@ -1,10 +1,11 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
 import { JwtModule } from '@auth0/angular-jwt';
+import { NgxGalleryModule } from 'ngx-gallery';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -32,7 +33,13 @@ export function tokenGettter() {
    return localStorage.getItem('token');
 }
 
-
+// to fix ngx gallery error
+export class CustomHammerConfig extends HammerGestureConfig {
+   overrides = {
+      pinch: { enable: false },
+      rotate: { enable: false }
+   };
+}
 
 
 @NgModule({
@@ -51,6 +58,7 @@ export function tokenGettter() {
       BrowserModule,
       HttpClientModule,
       FormsModule,
+      NgxGalleryModule,
       BsDropdownModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       TabsModule.forRoot(),
@@ -71,7 +79,8 @@ export function tokenGettter() {
       UserService,
       AlertifyService,
       MemberDetailResolver,
-      MemberListResolver
+      MemberListResolver,
+      { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig}
    ],
    bootstrap: [
       AppComponent
