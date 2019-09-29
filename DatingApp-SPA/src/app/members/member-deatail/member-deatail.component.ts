@@ -14,9 +14,11 @@ export class MemberDeatailComponent implements OnInit {
   user: User;
   galleryOptions: NgxGalleryOptions[];
   galleryImage: NgxGalleryImage[];
+
   constructor(private userService: UserService, private alertify: AlertifyService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    // getting member setails from the route
     this.route.data.subscribe(data => {
       this.user = data['user'];
     });
@@ -47,7 +49,7 @@ export class MemberDeatailComponent implements OnInit {
 
   // members/4 to access the id you need the router
   // loadUser() {                                     // params.id works too
-  //   this.userService.getUser(+ this.route.snapshot.params['id']).subscribe((user: User) => {
+  //   this.userService.getUser(+ this.route.snapshot.params['id'] ).subscribe((user: User) => {
   //     this.user = user;
   //   }, error => {
   //     this.alertify.error(error.statusText);

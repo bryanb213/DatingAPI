@@ -23,6 +23,7 @@ export class UserService {
   }
 
   getUser(id): Observable<User> {
+    console.log(id);
     return this.http.get<User>(this.baseUrl + 'users/' + id);
   }
 }

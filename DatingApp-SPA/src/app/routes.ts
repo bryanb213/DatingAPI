@@ -7,6 +7,8 @@ import { MemberDeatailComponent } from './members/member-deatail/member-deatail.
 import { AuthGuard } from './_guards/auth.guard';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 
 
 
@@ -19,13 +21,14 @@ export const appRoutes: Routes = [
         path: '',
         runGuardsAndResolvers: 'always',
         canActivate: [AuthGuard],
-        children: [
-            { path: 'members', component: MemberListComponent, resolve: {users: MemberListResolver}},
-                                                                        // for resolver
-            { path: 'members/:id', component: MemberDeatailComponent, resolve: {user: MemberDetailResolver}},
-            { path: 'messages', component: MessagesComponent},
-            { path: 'lists', component: ListsComponent},
-        ]
+            children: [
+                { path: 'members', component: MemberListComponent, resolve: {users: MemberListResolver}},
+                                                                            // for resolver
+                { path: 'members/:id', component: MemberDeatailComponent, resolve: {user: MemberDetailResolver}},
+                { path: 'members/edit', component: MemberEditComponent, resolve: {user: MemberEditResolver}},
+                { path: 'messages', component: MessagesComponent},
+                { path: 'lists', component: ListsComponent},
+            ]
     },
     // use empty '' to redirect to home component
     {path: '**', redirectTo: '', pathMatch: 'full'}

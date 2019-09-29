@@ -28,9 +28,16 @@ namespace DatingAPI.Data
         public async Task<User> GetUser(int id)
         {
             //will not get photots so include them with Include()
-            var user = await _context.Users.Include(p => p.Photos).FirstOrDefaultAsync(u => u.Id == id);
-
+            //var user = await _context.Users.Include(p => p.Photos).FirstOrDefaultAsync(u => u.Id == id);
+                        var user = await this._context
+                .Users
+                .Include(u => u.Photos)
+                .SingleOrDefaultAsync(u=> u.Id == id);
+            
             return user;
+
+
+            //return user;
         }
 
         public async Task<IEnumerable<User>> GetUsers()
