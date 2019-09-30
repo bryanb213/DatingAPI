@@ -27,6 +27,7 @@ import { appRoutes } from './routes';
 import { AuthGuard } from './_guards/auth.guard';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 
 
 
@@ -79,6 +80,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
       AuthService,
       ErrorInterceptor,
       AuthGuard,
+      PreventUnsavedChanges,
       UserService,
       AlertifyService,
       MemberDetailResolver,
