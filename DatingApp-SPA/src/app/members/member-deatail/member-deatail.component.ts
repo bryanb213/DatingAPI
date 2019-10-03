@@ -13,7 +13,7 @@ import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gal
 export class MemberDeatailComponent implements OnInit {
   user: User;
   galleryOptions: NgxGalleryOptions[];
-  galleryImage: NgxGalleryImage[];
+  galleryImages: NgxGalleryImage[];
 
   constructor(private userService: UserService, private alertify: AlertifyService, private route: ActivatedRoute) { }
 
@@ -31,19 +31,28 @@ export class MemberDeatailComponent implements OnInit {
       preview: false
     }];
 
-    this.galleryImage = this.getImages();
+    this.galleryImages = this.getImages();
   }
 
   getImages() {
     const imageUrls = [];
-    for (const photo of this.user.photos) {
+    // for (const photo of this.user.photos) {
+    //   imageUrls.push({
+    //     small: photo.url,
+    //     medium: photo.url,
+    //     big: photo.url,
+    //     description: photo.description
+    //   });
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < this.user.photos.length; i++) {
       imageUrls.push({
-        small: photo.url,
-        medium: photo.url,
-        big: photo.url,
-        description: photo.description
+        small: this.user.photos[i].url,
+        medium: this.user.photos[i].url,
+        big: this.user.photos[i].url,
+        description: this.user.photos[i].description,
       });
-      return imageUrls;
+    }
+    return imageUrls;
     }
   }
 
@@ -55,4 +64,3 @@ export class MemberDeatailComponent implements OnInit {
   //     this.alertify.error(error.statusText);
   //   });
   // }
-}

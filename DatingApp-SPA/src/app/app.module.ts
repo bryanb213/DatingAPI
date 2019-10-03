@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgxGalleryModule } from 'ngx-gallery';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -16,6 +17,7 @@ import { MemberListComponent } from './members/member-list/member-list.component
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { MemberDeatailComponent } from './members/member-deatail/member-deatail.component';
+import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 
 import { AuthService } from './_services/auth.service';
 import { UserService } from './_services/user.service';
@@ -28,6 +30,9 @@ import { AuthGuard } from './_guards/auth.guard';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+import { MyComponentComponent } from './my-component/my-component.component';
+
+
 
 
 
@@ -57,24 +62,27 @@ export class CustomHammerConfig extends HammerGestureConfig {
       MemberCardComponent,
       MemberDeatailComponent,
       MemberEditComponent,
+      PhotoEditorComponent,
+      MyComponentComponent
    ],
    imports: [
       BrowserModule,
       HttpClientModule,
       FormsModule,
       NgxGalleryModule,
+      FileUploadModule,
       BsDropdownModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       TabsModule.forRoot(),
       JwtModule.forRoot({
          config: {
             tokenGetter: tokenGettter,
-            // sent with no token
             whitelistedDomains: ['localhost:5000'],
-            // with token
             blacklistedRoutes: ['localhost:5000/api/auth']
          }
       })
+
+   // withtoken\nblacklistedRoutes:
    ],
    providers: [
       AuthService,
