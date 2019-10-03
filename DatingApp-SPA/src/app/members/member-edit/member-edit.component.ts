@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { UserService } from 'src/app/_services/user.service';
 import { AuthService } from 'src/app/_services/auth.service';
+import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-member-edit',
@@ -20,7 +21,7 @@ export class MemberEditComponent implements OnInit {
     $event.returnValue = true;
   }
 
-  // need router to access data and auth to access token data  
+  // need router to access data and auth to access token data
   constructor(private route: ActivatedRoute, private alertify: AlertifyService,
               private userService: UserService, private authService: AuthService) { }
 
@@ -33,12 +34,15 @@ export class MemberEditComponent implements OnInit {
 
   // d
   updateUser() {
-    this.userService.updateUser({ id: this.authService.decodedToken.nameid, user: this.user }).subscribe( nexxt => {
-      // console.log(this.user);
+    this.userService.updateUser({ id: this.authService.decodedToken.nameid, user: this.user }).subscribe( next => {
       this.alertify.success('Profile updated successfully!');
       this.editForm.reset(this.user);
     }, error => {
-      this.alertify.error(error.statusText);
+      this.alertify.error(error);
     });
+  }
+
+  updateMainPhoto(photoUrl) {
+    this.user.photoUrl = photoUrl;
   }
 }
