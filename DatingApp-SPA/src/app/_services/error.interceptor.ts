@@ -46,6 +46,6 @@ export class ErrorInterceptor implements HttpInterceptor {
 // export and add it to app.module in provider
 export const ErrorInterceptorProvider = {
     provide: HTTP_INTERCEPTORS,
-    useXlass: ErrorInterceptor,
+    useClass: ErrorInterceptor,
     multi: true
 };

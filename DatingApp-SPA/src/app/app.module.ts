@@ -21,7 +21,7 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
 
 import { AuthService } from './_services/auth.service';
 import { UserService } from './_services/user.service';
-import { ErrorInterceptor } from './_services/error.interceptor';
+import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { AlertifyService } from './_services/alertify.service';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
@@ -86,7 +86,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
    ],
    providers: [
       AuthService,
-      ErrorInterceptor,
+      ErrorInterceptorProvider,
       AuthGuard,
       PreventUnsavedChanges,
       UserService,
