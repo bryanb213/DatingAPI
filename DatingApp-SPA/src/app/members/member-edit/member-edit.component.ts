@@ -14,6 +14,7 @@ import { TouchSequence } from 'selenium-webdriver';
 })
 export class MemberEditComponent implements OnInit {
   user: User;
+  photoUrl: string;
   // for the form
   @ViewChild('editForm', {static: true}) editForm: NgForm;
   @HostListener('window.beforeunload', ['$event'])
@@ -30,6 +31,7 @@ export class MemberEditComponent implements OnInit {
       this.user = data['user'];
       // console.log(this.user);
     });
+    this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
   }
 
   // d
