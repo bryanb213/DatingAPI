@@ -33,9 +33,11 @@ namespace DatingApp.API.Helpers
             // backwards to send data to user
             CreateMap<UserToUpdateDto, User>();
 
-            //for photos
+            // for photos
             CreateMap<Photo, PhotoForReturnDto>();
             CreateMap<PhotoForCreationDto, Photo>();
+            // for registering
+            CreateMap<UserForRegisterDto, User>();
         }
     }
 }
