@@ -37,7 +37,7 @@ namespace DatingAPI.Controllers
                 return BadRequest("Username already exist");
 
 
-            var userToCreate =_mapper.Map<User>(userForRegisterDto);
+            var userToCreate = _mapper.Map<User>(userForRegisterDto);
 
             var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
 
@@ -53,7 +53,7 @@ namespace DatingAPI.Controllers
             //check if user exist while passing in username and password
             var userFromRepo = await _repo.Login(userForLoginDto.Username.ToLower(), userForLoginDto.Password);
 
-            if(userFromRepo == null)
+            if(userFromRepo == null) 
                 return Unauthorized();
 
             //add token and give it info by Claims give it id and username

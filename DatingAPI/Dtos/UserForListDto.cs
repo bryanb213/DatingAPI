@@ -12,7 +12,7 @@ namespace DatingAPI.Dtos
         public DateTime CreatedAt { get; set; }
         public DateTime LastActive { get; set; }
         public string City { get; set; }
-        public string County { get; set; }
+        public string Country { get; set; }
         //to display profile picture
         public string PhotoUrl { get; set; }
     }

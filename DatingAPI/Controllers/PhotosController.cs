@@ -49,7 +49,7 @@ namespace DatingAPI.Controllers
         }
 
         [HttpPost]                                                    //form for postman
-        public async Task<IActionResult> AddPhotoForUser(int userId, [FromForm]PhotoForCreationDto photoForCreationDto)
+        public async Task<IActionResult> AddPhotoForUser(int userId, [FromForm]PhotoForCreationDto photoForCreationDto, User user)
         {
             // Checking to make sure the username ID matches with whats in token
             if(userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
@@ -93,6 +93,10 @@ namespace DatingAPI.Controllers
             if(!userFromRepo.Photos.Any(u => u.IsMain))
                 photo.IsMain = true;
 
+            // if (userFromRepo.Photos.Count == 0)
+            // {
+            //     photo.IsMain = true;
+            // }
             //add photo
             userFromRepo.Photos.Add(photo);
 
