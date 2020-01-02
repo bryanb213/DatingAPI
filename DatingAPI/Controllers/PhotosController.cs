@@ -48,7 +48,7 @@ namespace DatingAPI.Controllers
             return Ok(photo);
         }
 
-        [HttpPost]                                                    //form for postman
+        [HttpPost]   //form for postman
         public async Task<IActionResult> AddPhotoForUser(int userId, [FromForm]PhotoForCreationDto photoForCreationDto, User user)
         {
             // Checking to make sure the username ID matches with whats in token
@@ -100,11 +100,13 @@ namespace DatingAPI.Controllers
             //add photo
             userFromRepo.Photos.Add(photo);
 
+            
+
             if(await _repo.SaveAll())
             {
                 //get photo to return to client
                 var photoToReturn = _mapper.Map<PhotoForReturnDto>(photo);
-                return CreatedAtRoute("GetPhoto", new {id = photo.Id}, photoToReturn);
+                return CreatedAtRoute("GetPhoto", new { id = photo.Id}, photoToReturn);
             }
 
             return BadRequest("Could not add the photo");
