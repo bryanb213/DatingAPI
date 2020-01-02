@@ -27,12 +27,14 @@ namespace DatingAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetUsers ()
+        public async Task<IActionResult> GetUsers ([FromQuery]UserParams userParams)
         {
-            var users = await _repo.GetUsers();
+            var users = await _repo.GetUsers(userParams);
              //IEnumerable because its a list
             var usersToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
             
+            Response.AddPagination(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
+
             return Ok(usersToReturn);
         }
         //name for registering user in AuthC
